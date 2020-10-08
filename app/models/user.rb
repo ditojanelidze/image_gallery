@@ -7,4 +7,15 @@ class User < ApplicationRecord
 
   has_many :categories
   has_many :pictures
+
+  before_save :encrypt_password
+
+  def encrypt_password
+    return unless password_changed?
+    self.password = Digest::SHA1.hexdigest self.password
+  end
+
+  def self.auth(username, password)
+    User.where(username: username, password: Digest::SHA1.hexdigest(password)).first
+  end
 end
