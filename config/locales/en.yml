@@ -3,3 +3,4 @@ en:
   custom_errors:
     invalid_password_format: "Password must contain at least a lowercase letter, a uppercase, a digit and 8+ chars"
     password_not_matched: "Passwords doesn't match"
+    unauthorized: "Username or Password is incorrect"

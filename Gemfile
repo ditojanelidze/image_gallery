@@ -21,3 +21,5 @@ end
 gem 'bcrypt'
 gem 'rswag-api'
 gem 'rswag-ui'
+gem 'redis'
+gem 'jwt'

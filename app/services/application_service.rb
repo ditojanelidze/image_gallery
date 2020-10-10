@@ -14,11 +14,11 @@ class ApplicationService
     {status: :ok}
   end
 
-  def result
+  def result(action = "")
     if @errors.any?
       {json: error_json_view, status: 400}
     else
-      {json: json_view}
+      {json: action.present? ? send("#{action}_json_view") : json_view}
     end
   end
 

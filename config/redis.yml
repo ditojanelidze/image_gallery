@@ -1,0 +1,15 @@
+production:
+  redis_auth_conf:
+    host: <%= ENV['REDIS_URL']  %>
+    port: <%= ENV['REDIS_PORT'] %>
+    db: 0
+development:
+  redis_auth_conf:
+    host: <%= ENV['REDIS_URL']  %>
+    port: <%= ENV['REDIS_PORT'] %>
+    db: 1
+test:
+  redis_auth_conf:
+    host: <%= ENV['REDIS_URL']  %>
+    port: <%= ENV['REDIS_PORT'] %>
+    db: 2
