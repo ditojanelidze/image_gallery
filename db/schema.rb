@@ -39,7 +39,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_192759) do
     t.string "last_name", limit: 50, null: false
     t.string "username", limit: 50, null: false
     t.string "password", limit: 200, null: false
-    t.datetime "registration_date", null: false
+    t.datetime "created_at", null: false
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

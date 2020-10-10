@@ -5,7 +5,8 @@ class CreateUser < ActiveRecord::Migration[6.0]
       t.string :last_name,           null: false, limit: 50
       t.string :username,            null: false, limit: 50
       t.string :password,            null: false, limit: 200
-      t.datetime :registration_date, null: false
+      t.datetime :created_at,        null: false
     end
+    add_index :users, :username , unique: true
   end
 end
