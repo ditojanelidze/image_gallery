@@ -13,5 +13,11 @@ group :development do
   gem 'figaro'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'rswag-specs'
+end
 
 gem 'bcrypt'
+gem 'rswag-api'
+gem 'rswag-ui'
