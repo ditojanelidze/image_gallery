@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_192759) do
 
   create_table "pictures", force: :cascade do |t|
     t.string "image", null: false
-    t.string "uuid", limit: 20, null: false
+    t.string "uuid", limit: 50, null: false
     t.bigint "category_id", null: false
     t.bigint "user_id", null: false
     t.integer "height", null: false

@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   post 'auth', to: "auth#auth"
   post 'refresh', to: "auth#refresh_token"
   post 'category', to: 'categories#create'
+  get 'categories', to: 'categories#index'
+  put 'category', to: 'categories#udpate'
+  delete 'category', to: 'categories#destroy'
+
+  post 'picture', to: 'pictures#upload'
 end
