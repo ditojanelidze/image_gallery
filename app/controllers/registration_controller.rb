@@ -1,4 +1,5 @@
 class RegistrationController < ApplicationController
+  skip_before_action :validate_auth
   def sign_up
     service = RegistrationService.new(sign_up_params)
     service.sign_up

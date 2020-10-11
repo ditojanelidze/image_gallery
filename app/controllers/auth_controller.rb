@@ -1,4 +1,6 @@
 class AuthController < ApplicationController
+  skip_before_action :validate_auth
+
   def auth
     service = AuthService.new(auth_params)
     service.auth

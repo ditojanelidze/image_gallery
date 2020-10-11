@@ -12,7 +12,7 @@ module Jwt
     end
 
     def generate_access_token
-      JWT.encode(@payload, secret_key, "HS256", { typ: 'JWT' })
+      JWT.encode(@payload, secret_key, 'HS256', { typ: 'JWT' })
     end
 
     def generate_refresh_token
