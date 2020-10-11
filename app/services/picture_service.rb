@@ -7,7 +7,7 @@ class PictureService < ApplicationService
   end
 
   def json_view
-    {picture: @picture.as_json(except: [:height, :width])}
+    {picture: @picture.as_json(except: [:height, :width, :image])}
   end
 
   def index_json_view
