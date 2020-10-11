@@ -1,4 +1,5 @@
 class PictureService < ApplicationService
+  @@max_records_count = 20
   def initialize(picture_params, current_user)
     super()
     @picture_params = picture_params
@@ -32,6 +33,8 @@ class PictureService < ApplicationService
     @result = Picture.select(:id, :uuid, :user_id, :category_id)
                      .where(user_filter)
                      .where(category_filter)
+                     .page(@picture_params[:page])
+                     .per([@picture_params[:page_limit], @@max_records_count].min )
   end
 
   private
