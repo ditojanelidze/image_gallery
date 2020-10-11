@@ -8,3 +8,4 @@ en:
     category_not_found: "Category couldn't be found"
     picture_not_found: "Picture couldn't be found"
     not_allowed: "You are not allowed to perform action"
+    not_similar: "Picture is not similar. Maybe dimensions differ too much or extension is not the same"

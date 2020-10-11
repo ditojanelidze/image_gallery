@@ -6,6 +6,8 @@ class Picture < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
+  has_many :similar_pictures, class_name: :Picture, foreign_key: :attached_to_id
+
   before_save :generate_uuid
 
   mount_uploader :image, PictureUploader

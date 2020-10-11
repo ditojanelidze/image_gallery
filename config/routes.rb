@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   post 'picture',        to: 'pictures#upload'
   delete 'picture/:id',  to: 'pictures#remove'
   get 'pictures',        to: 'pictures#index'
+  post 'attach_similar', to: 'pictures#attach_similar'
 end
