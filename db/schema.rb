@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_155958) do
+ActiveRecord::Schema.define(version: 2020_10_11_190433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_10_11_155958) do
     t.integer "width", null: false
     t.datetime "created_at", null: false
     t.bigint "attached_to_id"
+    t.decimal "hsla_color", default: [], array: true
     t.index ["attached_to_id"], name: "index_pictures_on_attached_to_id"
     t.index ["category_id"], name: "index_pictures_on_category_id"
     t.index ["user_id"], name: "index_pictures_on_user_id"
