@@ -5,6 +5,12 @@ class PicturesController < ApplicationController
     render service.result
   end
 
+  def show
+    service = PictureService.new(show_params, current_user)
+    service.show
+    render service.result
+  end
+
   def attach_similar
     service = PictureService.new(attach_similar_params, current_user)
     service.attach_similar
@@ -27,6 +33,10 @@ class PicturesController < ApplicationController
 
   def upload_params
     params.permit(:picture, :category_id)
+  end
+
+  def show_params
+    params.permit(:id)
   end
 
   def attach_similar_params

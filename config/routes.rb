@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete 'category/:id', to: 'categories#destroy'
 
   post 'picture',        to: 'pictures#upload'
+  get 'picture/:id',     to: 'pictures#show'
   delete 'picture/:id',  to: 'pictures#remove'
   get 'pictures',        to: 'pictures#index'
   post 'attach_similar', to: 'pictures#attach_similar'

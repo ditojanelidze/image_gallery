@@ -7,7 +7,7 @@ class PictureService < ApplicationService
   end
 
   def json_view
-    {picture: @picture.as_json(except: [:height, :width, :image])}
+    {picture: @picture.as_json(except: [:height, :width, :image], include: {similar_pictures: {except: [:height, :width, :image]}})}
   end
 
   def index_json_view
@@ -22,6 +22,10 @@ class PictureService < ApplicationService
                               width: picture_dimensions[0],
                               height: picture_dimensions[1])
     @errors.concat @picture.formated_errors if @picture.errors.any?
+  end
+
+  def show
+    find_picture
   end
 
   def attach_similar
