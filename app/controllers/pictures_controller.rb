@@ -20,7 +20,7 @@ class PicturesController < ApplicationController
   def index
     service = PictureService.new(index_params, current_user)
     service.index
-    render service.result
+    render service.result "index"
   end
 
   private

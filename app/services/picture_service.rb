@@ -38,11 +38,13 @@ class PictureService < ApplicationService
   end
 
   def index
+    page_limit = @picture_params[:page_limit].to_i
+    per_page = page_limit == 0 ? @@max_records_count : [page_limit, @@max_records_count].min
     @result = Picture.select(:id, :uuid, :user_id, :category_id)
                      .where(user_filter)
                      .where(category_filter)
-                     .page(@picture_params[:page])
-                     .per([@picture_params[:page_limit], @@max_records_count].min )
+                     .page(@picture_params[:page] || 1)
+                     .per(per_page)
   end
 
   private
