@@ -6,3 +6,5 @@ en:
     unauthorized: "Username or Password is incorrect"
     invalid_refresh_token: "Refresh token is invalid or refreshing time has expired"
     category_not_found: "Category couldn't be found"
+    picture_not_found: "Picture couldn't be found"
+    not_allowed: "You are not allowed to perform action"

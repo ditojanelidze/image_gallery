@@ -43,7 +43,7 @@ class CategoriesService <ApplicationService
 
   def validate_owner
     return if errors.any?
-    valid_owner = @category.user == @current_user
+    valid_owner = @category.user_id == @current_user.id
     fill_errors(:nase, :not_allowed, "not_allowed") unless valid_owner
   end
 
