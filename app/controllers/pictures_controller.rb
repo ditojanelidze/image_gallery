@@ -11,6 +11,12 @@ class PicturesController < ApplicationController
     render service.result
   end
 
+  def index
+    service = PictureService.new(index_params, current_user)
+    service.index
+    render service.result
+  end
+
   private
 
   def upload_params
@@ -18,6 +24,10 @@ class PicturesController < ApplicationController
   end
 
   def remove_params
-    params.permit(:picture_id)
+    params.permit(:id)
+  end
+
+  def index_params
+    params.permit(:category_id, :user_id)
   end
 end

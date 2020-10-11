@@ -37,7 +37,7 @@ class CategoriesService <ApplicationService
   private
 
   def find_category
-    @category = Category.find_by(id: @category_params[:category_id])
+    @category = Category.find_by(id: @category_params[:id])
     fill_errors(:base, :not_found, "category_not_found") unless @category.present?
   end
 

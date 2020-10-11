@@ -9,6 +9,9 @@ class PictureService < ApplicationService
     {picture: @picture.as_json(except: [:height, :width])}
   end
 
+  def index_json_view
+    {pictures: @result}
+  end
   def upload
     picture_dimensions = MiniMagick::Image.open(@picture_params[:picture].path).dimensions
     @picture = Picture.create(category_id: @picture_params[:category_id],
@@ -25,10 +28,16 @@ class PictureService < ApplicationService
     remove_picture
   end
 
+  def index
+    @result = Picture.select(:id, :uuid, :user_id, :category_id)
+                     .where(user_filter)
+                     .where(category_filter)
+  end
+
   private
 
   def find_picture
-    @picture = Picture.find_by(id: @picture_params[:picture_id])
+    @picture = Picture.find_by(id: @picture_params[:id])
     fill_errors(:base, :not_found, "picture_not_found") unless @picture.present?
   end
 
@@ -42,5 +51,13 @@ class PictureService < ApplicationService
     return if errors.any?
     @picture.destroy
     @errors.concat @picture.formated_errors if @picture.errors.any?
+  end
+
+  def user_filter
+    @picture_params[:user_id].present? ? "user_id = #{@picture_params[:user_id]}" : ""
+  end
+
+  def category_filter
+    @picture_params[:category_id].present? ? "category_id = #{@picture_params[:category_id]}" : ""
   end
 end

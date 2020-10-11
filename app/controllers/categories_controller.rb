@@ -30,10 +30,10 @@ class CategoriesController < ApplicationController
   end
 
   def update_params
-    params.permit(:category_id, :name)
+    params.permit(:id, :name)
   end
 
   def destroy_params
-    params.permit(:category_id)
+    params.permit(:id)
   end
 end
