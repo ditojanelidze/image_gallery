@@ -28,6 +28,11 @@ class PictureService < ApplicationService
     find_picture
   end
 
+  def show_picture
+    find_by_uuid
+    @picture&.image&.file
+  end
+
   def attach_similar
     find_similar
     validate_aspect_ratio
@@ -55,6 +60,11 @@ class PictureService < ApplicationService
 
   def find_picture
     @picture = Picture.find_by(id: @picture_params[:id])
+    fill_errors(:base, :not_found, "picture_not_found") unless @picture.present?
+  end
+
+  def find_by_uuid
+    @picture = Picture.find_by(uuid: @picture_params[:uuid])
     fill_errors(:base, :not_found, "picture_not_found") unless @picture.present?
   end
 

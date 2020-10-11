@@ -11,6 +11,12 @@ class PicturesController < ApplicationController
     render service.result
   end
 
+  def show_picture
+    service = PictureService.new(show_picture_params, current_user)
+    file = service.show_picture
+    file.present? ? send_data(file.read, filename: file.filename, content_type: file.content_type) : (render json: {status: :not_found}, status: 404)
+  end
+
   def attach_similar
     service = PictureService.new(attach_similar_params, current_user)
     service.attach_similar
@@ -37,6 +43,10 @@ class PicturesController < ApplicationController
 
   def show_params
     params.permit(:id)
+  end
+
+  def show_picture_params
+    params.permit(:uuid)
   end
 
   def attach_similar_params
