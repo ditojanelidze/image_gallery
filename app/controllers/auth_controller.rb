@@ -16,4 +16,8 @@ class AuthController < ApplicationController
   def auth_params
     params.permit(:username, :password)
   end
+
+  def refresh_token_params
+    params.permit(:refresh_token)
+  end
 end

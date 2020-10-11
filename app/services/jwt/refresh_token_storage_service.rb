@@ -1,6 +1,6 @@
 module Jwt
   class RefreshTokenStorageService
-    def initialize(refresh_token, user_id)
+    def initialize(refresh_token, user_id = nil)
       @refresh_token_key = "refresh_#{refresh_token}"
       @user_id = user_id
     end
@@ -19,7 +19,7 @@ module Jwt
     end
 
     def delete
-      $redis.del @refresh_token_key
+      $redis.expire @refresh_token_key, 10
     end
 
     private

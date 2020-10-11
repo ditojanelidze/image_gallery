@@ -4,3 +4,4 @@ en:
     invalid_password_format: "Password must contain at least a lowercase letter, a uppercase, a digit and 8+ chars"
     password_not_matched: "Passwords doesn't match"
     unauthorized: "Username or Password is incorrect"
+    invalid_refresh_token: "Refresh token is invalid or refreshing time has expired"
