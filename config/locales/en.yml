@@ -5,3 +5,4 @@ en:
     password_not_matched: "Passwords doesn't match"
     unauthorized: "Username or Password is incorrect"
     invalid_refresh_token: "Refresh token is invalid or refreshing time has expired"
+    category_not_found: "Category couldn't be found"

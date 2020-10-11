@@ -22,7 +22,7 @@ class AuthService < ApplicationService
   end
 
   def handle_unauthorized
-    fill_errors(:base, :unauthorized, custom_error_msg("unauthorized"))
+    fill_errors(:base, :unauthorized, "unauthorized")
   end
 
   def payload

@@ -24,8 +24,8 @@ class ApplicationService
 
   private
 
-  def fill_errors(field, code, error_msg)
-    @errors << {field: field, code: code, error_msg: error_msg}
+  def fill_errors(field, code, custom_error_type)
+    @errors << {field: field, code: code, error_msg: custom_error_msg(custom_error_type)}
   end
 
   def custom_error_msg(msg_type)

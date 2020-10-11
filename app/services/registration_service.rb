@@ -33,12 +33,12 @@ class RegistrationService < ApplicationService
   def validate_password_match
     return if errors.any?
     passwords_match = @sign_up_params[:password] == @sign_up_params[:password_confirmation]
-    fill_errors(:password, :not_match, custom_error_msg("password_not_matched")) unless passwords_match
+    fill_errors(:password, :not_match,"password_not_matched") unless passwords_match
   end
 
   def validate_password_format
     return if errors.any?
     valid_format = @@password_regex.match? @sign_up_params[:password]
-    fill_errors(:password, :invalid, custom_error_msg("invalid_password_format")) unless valid_format
+    fill_errors(:password, :invalid,"invalid_password_format") unless valid_format
   end
 end

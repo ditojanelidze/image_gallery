@@ -15,7 +15,7 @@ class RefreshTokenService < ApplicationService
       @access_token, @refresh_token = Jwt::TokenProviderService.new(payload).generate_tokens
       storage_service.delete
     else
-      fill_errors(:base, :unauthorized, custom_error_msg("invalid_refresh_token"))
+      fill_errors(:base, :unauthorized, "invalid_refresh_token")
     end
   end
 
