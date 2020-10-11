@@ -5,5 +5,7 @@ class CreateCategory < ActiveRecord::Migration[6.0]
       t.references :user, null: false
       t.datetime :created_at, null: false
     end
+
+    add_index :categories, :name, unique: true
   end
 end
