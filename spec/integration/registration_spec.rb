@@ -1,11 +1,12 @@
 require 'swagger_helper'
-
-describe 'Registration Service' do
+require 'rspec-rails'
+RSpec.describe 'Registration Service' do
 
   path '/sign_up' do
     post 'Registers New User' do
       tags 'Registration'
       consumes 'application/json'
+      produces 'application/json'
 
       parameter name: :blog, in: :body, schema: {
           type: :object,
@@ -15,8 +16,7 @@ describe 'Registration Service' do
               username: { type: :string },
               password: { type: :string },
               password_confirmation: { type: :string }
-          },
-          required: ['first_name', 'last_name', 'username', 'password', 'password_confirmation']
+          }
       }
 
       response '200', 'User Registered' do

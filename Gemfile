@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
+ruby '2.6.5'
+gem 'rails', '5.2.2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 
@@ -15,12 +15,12 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'rswag-specs'
+  gem 'rswag-specs', '2.0.5'
 end
 
 gem 'bcrypt'
-gem 'rswag-api'
-gem 'rswag-ui'
+gem 'rswag-api', '2.0.5'
+gem 'rswag-ui', '2.0.5'
 gem 'redis'
 gem 'jwt'
 gem 'carrierwave', '~> 2.0'
