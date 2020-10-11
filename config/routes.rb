@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   post 'category',       to: 'categories#create'
   get 'categories',      to: 'categories#index'
-  put 'category/:id',    to: 'categories#udpate'
+  put 'category/:id',    to: 'categories#update'
   delete 'category/:id', to: 'categories#destroy'
 
   post 'picture',        to: 'pictures#upload'

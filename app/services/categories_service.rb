@@ -41,7 +41,7 @@ class CategoriesService <ApplicationService
     fill_errors(:base, :not_found, "category_not_found") unless @category.present?
   end
 
-  def validate_owner
+  def validate_access
     return if errors.any?
     valid_owner = @category.user_id == @current_user.id
     fill_errors(:nase, :not_allowed, "not_allowed") unless valid_owner
