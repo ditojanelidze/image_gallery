@@ -8,7 +8,7 @@ RSpec.describe 'Registration Service' do
       consumes 'application/json'
       produces 'application/json'
 
-      parameter name: :blog, in: :body, schema: {
+      parameter name: :params, in: :body, schema: {
           type: :object,
           properties: {
               first_name: { type: :string },
@@ -22,10 +22,15 @@ RSpec.describe 'Registration Service' do
       response '200', 'User Registered' do
         schema type: :object,
                properties: {
-                   id:         { type: :integer },
-                   first_name: { type: :string },
-                   last_name:  { type: :string },
-                   username:   { type: :string }
+                   user: {
+                       type: :object,
+                       properties: {
+                           id:         { type: :integer },
+                           first_name: { type: :string },
+                           last_name:  { type: :string },
+                           username:   { type: :string }
+                       }
+                   }
                },
                required: [ 'id', 'first_name', 'last_name', 'username' ]
         run_test!
