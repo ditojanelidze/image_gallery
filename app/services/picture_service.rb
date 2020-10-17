@@ -15,6 +15,8 @@ class PictureService < ApplicationService
   end
 
   def upload
+    validate_picture
+    return if errors.any?
     picture_dimensions = MiniMagick::Image.open(@picture_params[:picture].path).dimensions
     @picture = Picture.create(category_id: @picture_params[:category_id],
                               user_id: @current_user.id,
@@ -83,6 +85,10 @@ class PictureService < ApplicationService
                               height: picture_dimensions[1],
                               attached_to_id: @similar_picture.id)
     @errors.concat @picture.formated_errors if @picture.errors.any?
+  end
+
+  def validate_picture
+    fill_errors(:base, :invalid, "invalid") unless @picture_params[:picture].present?
   end
 
   def validate_aspect_ratio

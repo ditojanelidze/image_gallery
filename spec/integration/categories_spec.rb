@@ -35,7 +35,18 @@ RSpec.describe 'Category Services' do
                        }
                    }
                },
-               required: [ 'id', 'name', 'created_at']
+               required: [ 'category']
+        before do
+          User.create(first_name: Faker::Name.first_name,
+                      last_name: Faker::Name.last_name,
+                      username: 'TestUser',
+                      password: 'Password123')
+          service = AuthService.new({username: 'TestUser', password: 'Password123'})
+          service.auth
+          @jwt = service.json_view[:access_token]
+        end
+        let(:Authorization){"Bearer #{@jwt}"}
+        let(:params) {{name: Faker::Movies.name}}
         run_test!
       end
 
@@ -54,7 +65,19 @@ RSpec.describe 'Category Services' do
                        }
                    }
                },
-               required: ['field', 'code', 'error_msg' ]
+               required: ['errors']
+        before do
+          user = User.create(first_name: Faker::Name.first_name,
+                              last_name: Faker::Name.last_name,
+                              username: 'TestUser',
+                              password: 'Password123')
+          Category.create(name: 'CategoryName', user_id: user.id)
+          service = AuthService.new({username: 'TestUser', password: 'Password123'})
+          service.auth
+          @jwt = service.json_view[:access_token]
+        end
+        let(:Authorization){"Bearer #{@jwt}"}
+        let(:params) {{name: 'CategoryName'}}
         run_test!
       end
     end
@@ -80,15 +103,27 @@ RSpec.describe 'Category Services' do
                    categories: {
                        type: :array,
                        items: {
+                           type: :object,
                            properties: {
                                id:         { type: :integer },
                                name:       { type: :string },
-                               user_id:    { type: :string },
+                               user_id:    { type: :integer },
                                created_at: { type: :string }
                            }
                        }
                    }
-               }, required: %w[id name user_id created_at]
+               }, required: ['categories']
+        before do
+          user = User.create(first_name: Faker::Name.first_name,
+                             last_name: Faker::Name.last_name,
+                             username: 'TestUser',
+                             password: 'Password123')
+          Category.create(name: Faker::Movies.name, user_id: user.id)
+          service = AuthService.new({username: 'TestUser', password: 'Password123'})
+          service.auth
+          @jwt = service.json_view[:access_token]
+        end
+        let(:Authorization){"Bearer #{@jwt}"}
         run_test!
       end
     end
@@ -129,7 +164,20 @@ RSpec.describe 'Category Services' do
                        }
                    }
                },
-               required: %w[id first_name last_name username]
+               required: ['category']
+        before do
+          user = User.create(first_name: Faker::Name.first_name,
+                             last_name: Faker::Name.last_name,
+                             username: 'TestUser',
+                             password: 'Password123')
+          @category = Category.create(name: 'CategoryName', user_id: user.id)
+          service = AuthService.new({username: 'TestUser', password: 'Password123'})
+          service.auth
+          @jwt = service.json_view[:access_token]
+        end
+        let(:Authorization){"Bearer #{@jwt}"}
+        let(:params){{name: "NewCategoryName"}}
+        let(:id){@category.id}
         run_test!
       end
 
@@ -148,7 +196,19 @@ RSpec.describe 'Category Services' do
                        }
                    }
                },
-               required: %w[field code error_msg]
+               required: ['errors']
+        before do
+          user = User.create(first_name: Faker::Name.first_name,
+                             last_name: Faker::Name.last_name,
+                             username: 'TestUser',
+                             password: 'Password123')
+          service = AuthService.new({username: 'TestUser', password: 'Password123'})
+          service.auth
+          @jwt = service.json_view[:access_token]
+        end
+        let(:Authorization){"Bearer #{@jwt}"}
+        let(:params){{name: "NewCategoryName"}}
+        let(:id){rand(1000)}
         run_test!
       end
     end
@@ -182,7 +242,20 @@ RSpec.describe 'Category Services' do
                        }
                    }
                },
-               required: %w[id name created_at]
+               required: ['category']
+        before do
+          user = User.create(first_name: Faker::Name.first_name,
+                             last_name: Faker::Name.last_name,
+                             username: 'TestUser',
+                             password: 'Password123')
+          @category = Category.create(name: 'CategoryName', user_id: user.id)
+          service = AuthService.new({username: 'TestUser', password: 'Password123'})
+          service.auth
+          @jwt = service.json_view[:access_token]
+        end
+        let(:Authorization){"Bearer #{@jwt}"}
+        let(:params){{name: "NewCategoryName"}}
+        let(:id){@category.id}
         run_test!
       end
 
@@ -201,7 +274,19 @@ RSpec.describe 'Category Services' do
                        }
                    }
                },
-               required: %w[field code error_msg]
+               required: ['errors']
+        before do
+          User.create(first_name: Faker::Name.first_name,
+                      last_name: Faker::Name.last_name,
+                      username: 'TestUser',
+                      password: 'Password123')
+          service = AuthService.new({username: 'TestUser', password: 'Password123'})
+          service.auth
+          @jwt = service.json_view[:access_token]
+        end
+        let(:Authorization){"Bearer #{@jwt}"}
+        let(:params){{name: "NewCategoryName"}}
+        let(:id){rand(1000)}
         run_test!
       end
     end

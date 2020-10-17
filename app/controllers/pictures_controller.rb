@@ -14,7 +14,7 @@ class PicturesController < ApplicationController
   def show_picture
     service = PictureService.new(show_picture_params, current_user)
     file = service.show_picture
-    file.present? ? send_data(file.read, filename: file.filename, content_type: file.content_type, disposition: :inline) : (render json: {status: :not_found}, status: 404)
+    file.present? ? send_data(file.read, filename: file.filename, content_type: file.content_type, disposition: :inline) : (render json: {errors: service.errors}, status: 404)
   end
 
   def attach_similar
