@@ -32,7 +32,16 @@ RSpec.describe 'Registration Service' do
                        }
                    }
                },
-               required: [ 'id', 'first_name', 'last_name', 'username' ]
+               required: %w[user]
+        let(:params) do
+          {
+              first_name: Faker::Name.first_name,
+              last_name: Faker::Name.last_name,
+              username: Faker::Internet.username,
+              password: 'Password123',
+              password_confirmation: 'Password123'
+          }
+        end
         run_test!
       end
 
@@ -51,7 +60,16 @@ RSpec.describe 'Registration Service' do
                        }
                    }
                },
-               required: ['field', 'code', 'error_msg' ]
+               required: %w[errors]
+        let(:params) do
+          {
+              first_name: Faker::Name.first_name,
+              last_name: Faker::Name.last_name,
+              username: Faker::Internet.username,
+              password: 'Password123',
+              password_confirmation: 'PasswordDontMatch'
+          }
+        end
         run_test!
       end
     end

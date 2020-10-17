@@ -13,6 +13,10 @@ group :development do
   gem 'figaro'
 end
 
+group :test do
+  gem 'faker'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'rswag-specs', '2.0.5'

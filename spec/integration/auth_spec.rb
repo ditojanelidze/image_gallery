@@ -22,7 +22,15 @@ RSpec.describe 'Auth Services' do
                    access_token:  { type: :string },
                    refresh_token: { type: :string }
                },
-               required: [ 'access_token', 'refresh_token']
+               required: %w[access_token refresh_token]
+
+        before do
+           User.create(first_name: Faker::Name.first_name,
+                       last_name: Faker::Name.last_name,
+                       username: 'TestUser',
+                       password: 'Password123')
+        end
+        let(:params){{username: 'TestUser', password: 'Password123'}}
         run_test!
       end
 
@@ -41,7 +49,8 @@ RSpec.describe 'Auth Services' do
                        }
                    }
                },
-               required: ['field', 'code', 'error_msg' ]
+               required: %w[errors]
+        let(:params){{username: 'InvalidUser', password: 'InvalidPassword'}}
         run_test!
       end
     end
@@ -66,7 +75,18 @@ RSpec.describe 'Auth Services' do
                    access_token:  { type: :string },
                    refresh_token: { type: :string }
                },
-               required: [ 'access_token', 'refresh_token']
+               required: %w[access_token refresh_token]
+
+        before do
+          User.create(first_name: Faker::Name.first_name,
+                      last_name: Faker::Name.last_name,
+                      username: 'TestUser',
+                      password: 'Password123')
+          service = AuthService.new({username: 'TestUser', password: 'Password123'})
+          service.auth
+          @refresh = service.json_view[:refresh_token]
+        end
+        let(:params){{refresh_token: @refresh}}
         run_test!
       end
 
@@ -85,7 +105,8 @@ RSpec.describe 'Auth Services' do
                        }
                    }
                },
-               required: ['field', 'code', 'error_msg' ]
+               required: %w[errors]
+        let(:params){{refresh_token: SecureRandom.uuid}}
         run_test!
       end
     end
